@@ -19,10 +19,12 @@ public class GameManager : Singleton<GameManager>
         if (state)
         {
             LevelManager.Instance.LoadNextLevel();
+            OnGameFinishes.Invoke(true);
         }
         else
         {
             LevelManager.Instance.ReloadLevel();
+            OnGameFinishes.Invoke(false);
         }
     }
 }

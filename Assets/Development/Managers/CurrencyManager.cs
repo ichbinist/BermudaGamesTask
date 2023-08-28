@@ -22,12 +22,16 @@ public class CurrencyManager : Singleton<CurrencyManager>
     private void OnEnable()
     {
         JSONDataManager.Instance.OnDataLoaded += InitializeData;
+        GameManager.Instance.OnGameFinishes.AddListener(GameEndingCurrencyAction);
     }
 
     private void OnDisable()
     {
         if (JSONDataManager.Instance)
+        {
+            GameManager.Instance.OnGameFinishes.RemoveListener(GameEndingCurrencyAction);
             JSONDataManager.Instance.OnDataLoaded -= InitializeData;
+        }
     }
 
     private void InitializeData(JSONDATA jsondata)
@@ -47,6 +51,18 @@ public class CurrencyManager : Singleton<CurrencyManager>
             OnTemporaryCurrencyRemoved.Invoke();
         }
         OnTemporaryCurrencyChanged.Invoke();
+    }
+
+    private void GameEndingCurrencyAction(bool state)
+    {
+        if (state)
+        {
+            AddTemporaryToPersistent();
+        }
+        else
+        {
+            ResetTemporaryCurrency();
+        }
     }
 
     public void ResetTemporaryCurrency()
