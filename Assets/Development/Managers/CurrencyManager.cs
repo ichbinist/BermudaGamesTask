@@ -15,6 +15,10 @@ public class CurrencyManager : Singleton<CurrencyManager>
     public UnityEvent OnTemporaryCurrencyAdded = new UnityEvent();
     [HideInInspector]
     public UnityEvent OnTemporaryCurrencyRemoved = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent OnTemporaryCurrencyChanged = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent OnPersistentCurrencyChanged = new UnityEvent();
     private void OnEnable()
     {
         JSONDataManager.Instance.OnDataLoaded += InitializeData;
@@ -42,17 +46,20 @@ public class CurrencyManager : Singleton<CurrencyManager>
         {
             OnTemporaryCurrencyRemoved.Invoke();
         }
+        OnTemporaryCurrencyChanged.Invoke();
     }
 
     public void ResetTemporaryCurrency()
     {
         TemporaryCurrency = 0;
+        OnTemporaryCurrencyChanged.Invoke();
     }
 
     public void AddTemporaryToPersistent()
     {
         AddPersistentCurrency(TemporaryCurrency);
         ResetTemporaryCurrency();
+        OnPersistentCurrencyChanged.Invoke();
     }
 
     public void AddPersistentCurrency(int currency)

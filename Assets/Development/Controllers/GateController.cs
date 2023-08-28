@@ -11,7 +11,10 @@ public class GateController : MonoBehaviour
     {
         if (!Gate.IsInteracted)
         {
-            Interaction();
+            if (other.GetComponentInParent<Runner>())
+            {
+                Interaction();
+            }
         }
     }
 
@@ -20,9 +23,21 @@ public class GateController : MonoBehaviour
         Gate.IsInteracted = true;
         Gate.SpriteRenderer.enabled = false;
         Gate.AmountText.gameObject.SetActive(false);
+
         foreach (Gate _gate in Gate.ConnectedGates)
         {
             _gate.IsInteracted = true;
+        }
+
+        if (Gate.OperationType == OperationType.Increase)
+        {
+            CurrencyManager.Instance.AddTemporaryCurrency(Mathf.RoundToInt(Gate.ChangeAmount));
+            Gate.GoodFeedbackParticle.Play();
+        }
+        else if (Gate.OperationType == OperationType.Decrease)
+        {
+            CurrencyManager.Instance.AddTemporaryCurrency(Mathf.RoundToInt(-Gate.ChangeAmount));
+            Gate.BadFeedbackParticle.Play();
         }
     }
 }

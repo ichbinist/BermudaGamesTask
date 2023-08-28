@@ -15,6 +15,12 @@ public class Gate : MonoBehaviour
     public TextMeshProUGUI BannerText;
     [FoldoutGroup("Gate References")]
     public TextMeshProUGUI AmountText;
+    [FoldoutGroup("Gate References")]
+    public ParticleSystem GoodFeedbackParticle; 
+    [FoldoutGroup("Gate References")]
+    public ParticleSystem BadFeedbackParticle;
+
+
     [FoldoutGroup("Gate Settings")]
     public OperationType OperationType;
     [FoldoutGroup("Gate Settings")]
