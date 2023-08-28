@@ -8,7 +8,7 @@ public class ObstacleRewardController : MonoBehaviour
     [FoldoutGroup("Obstacle Reward Settings")]
     public int RewardCount = 0;
     [FoldoutGroup("Obstacle Reward Settings")]
-    public Reward RewardPrefab;
+    public Collectable RewardPrefab;
     [FoldoutGroup("Obstacle Reward Settings")]
     public Transform RewardPrefabHolder;
 
@@ -19,7 +19,7 @@ public class ObstacleRewardController : MonoBehaviour
 
     [FoldoutGroup("Obstacle Reward Settings/Debug")]
     [ReadOnly]
-    public List<Reward> Rewards = new List<Reward>();
+    public List<Collectable> Rewards = new List<Collectable>();
 
     private Obstacle obstacle;
     public Obstacle Obstacle { get { return (obstacle == null) ? obstacle = GetComponent<Obstacle>() : obstacle; }}   
@@ -39,7 +39,7 @@ public class ObstacleRewardController : MonoBehaviour
     {
         for (int i = 0; i < RewardCount; i++)
         {
-            Reward localReward = Instantiate(RewardPrefab, RewardPrefabHolder);
+            Collectable localReward = Instantiate(RewardPrefab, RewardPrefabHolder);
             localReward.transform.localPosition = Vector3.up * RewardStartHeight + Vector3.up * RewardHeightIncrement * i;
             Rewards.Add(localReward);
         }
@@ -50,7 +50,7 @@ public class ObstacleRewardController : MonoBehaviour
         for (int i = 0; i < Rewards.Count; i++)
         {
             float heightBeforeAnimation = Rewards[i].transform.localPosition.y + 0.5f;
-            Reward localReward = Rewards[i];
+            Collectable localReward = Rewards[i];
             localReward.transform.DOLocalMoveY(heightBeforeAnimation - RewardStartHeight, 0.6f).SetEase(Ease.OutBounce).SetDelay(i*0.05f).OnComplete(()=> localReward.IsCollectable = true);
             localReward.transform.DOShakeRotation(0.6f, 30f);
         }

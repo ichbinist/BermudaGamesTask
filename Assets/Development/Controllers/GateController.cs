@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class GateController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Gate gate;
+    public Gate Gate { get { return (gate == null) ? gate = GetComponent<Gate>() : gate; } }
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (!Gate.IsInteracted)
+        {
+            Interaction();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Interaction()
     {
-        
+        Gate.IsInteracted = true;
+        Gate.SpriteRenderer.enabled = false;
+        Gate.AmountText.gameObject.SetActive(false);
+        foreach (Gate _gate in Gate.ConnectedGates)
+        {
+            _gate.IsInteracted = true;
+        }
     }
 }

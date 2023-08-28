@@ -81,6 +81,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void ReloadLevel()
     {
+        FinishLevel(); //Geçici
         LoadLastLevel();
     }
 }

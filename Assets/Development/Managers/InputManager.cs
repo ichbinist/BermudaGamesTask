@@ -27,6 +27,11 @@ public class InputManager : Singleton<InputManager>
         {
             FirstTouchPosition = Input.mousePosition;
             LastTouchPosition = Input.mousePosition;
+
+            if (!LevelManager.Instance.IsLevelStarted)
+            {
+                LevelManager.Instance.StartLevel();
+            }
         }
         else if (Input.GetMouseButton(0))
         {

@@ -23,7 +23,14 @@ public class Gate : MonoBehaviour
     public float ChangeAmount;
     [FoldoutGroup("Gate Settings")]
     public int FakeAmountMultiplier = 1;
+    [FoldoutGroup("Gate Settings")]
+    public string GateLabel;
 
+    [FoldoutGroup("Gate Connection Settings")]
+    public List<Gate> ConnectedGates = new List<Gate>();
+    
+    [HideInInspector]
+    public bool IsInteracted = false;
     private void OnEnable()
     {
         InitializeGate();
@@ -65,7 +72,8 @@ public class Gate : MonoBehaviour
 
     private string GetGateName()
     {
-        switch (GateType)
+        return GateLabel;
+        /*switch (GateType)
         {
             case GateType.Type1:
                 return "TYPE 1";
@@ -75,7 +83,7 @@ public class Gate : MonoBehaviour
                 return "TYPE 3";
             default:
                 return "TYPE 4";
-        }
+        }*/
     }
 }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CurrencyManager : Singleton<CurrencyManager>
 {
@@ -10,7 +11,10 @@ public class CurrencyManager : Singleton<CurrencyManager>
     [FoldoutGroup("Currency Manager Settings/Debug")]
     [ReadOnly]
     public int TemporaryCurrency;
-
+    [HideInInspector]
+    public UnityEvent OnTemporaryCurrencyAdded = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent OnTemporaryCurrencyRemoved = new UnityEvent();
     private void OnEnable()
     {
         JSONDataManager.Instance.OnDataLoaded += InitializeData;
@@ -30,6 +34,14 @@ public class CurrencyManager : Singleton<CurrencyManager>
     public void AddTemporaryCurrency(int currency)
     {
         TemporaryCurrency += currency;
+        if(currency > 0)
+        {
+            OnTemporaryCurrencyAdded.Invoke();
+        }
+        else
+        {
+            OnTemporaryCurrencyRemoved.Invoke();
+        }
     }
 
     public void ResetTemporaryCurrency()
