@@ -213,6 +213,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TemporaryCurrency: 0
+  OnTemporaryCurrencyAdded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTemporaryCurrencyRemoved:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTemporaryCurrencyChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPersistentCurrencyChanged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &866944410
 GameObject:
   m_ObjectHideFlags: 0

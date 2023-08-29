@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RunnerSwerveController : MonoBehaviour
@@ -41,14 +42,32 @@ public class RunnerSwerveController : MonoBehaviour
             {
                 positionBeforeSwerve = transform.localPosition;
             }
+
             if (Input.GetMouseButton(0))
             {
                 transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(Mathf.Clamp(positionBeforeSwerve.x + InputManager.Instance.GetSwerveAmount(SwerveSpeed).x, -SwerveLimit, SwerveLimit), transform.localPosition.y, 0f), Time.deltaTime * SwerveSpeed * 2.5f);
             }
+
+            RotateCharacter();
+
             if (Input.GetMouseButtonUp(0))
             {
                 positionBeforeSwerve = transform.localPosition;
-            }
+            }  
+        }
+    }
+
+    private void RotateCharacter()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            float distance = positionBeforeSwerve.x + InputManager.Instance.GetSwerveAmount(SwerveSpeed).x;
+            float rotationDistance = distance - transform.localPosition.x;
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0f, Mathf.Clamp(120f * (rotationDistance), -45f, 45f), 0f), Time.deltaTime * 20f);
+        }
+        else
+        {
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.identity, Time.deltaTime * 10f);
         }
     }
 

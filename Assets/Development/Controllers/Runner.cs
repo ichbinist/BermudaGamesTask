@@ -14,7 +14,10 @@ public class Runner : MonoBehaviour
     public UnityEvent OnCharacterBounce = new UnityEvent();
     [HideInInspector]
     public UnityEvent OnDamageTaken = new UnityEvent();
-
+    [HideInInspector]
+    public UnityEvent OnMovementStarted = new UnityEvent();
+    [HideInInspector]
+    public UnityEvent OnMovementStopped = new UnityEvent();
     private void OnEnable()
     {
         LevelManager.Instance.OnLevelStarted.AddListener(LevelStartedAction);
@@ -33,10 +36,12 @@ public class Runner : MonoBehaviour
     private void LevelStartedAction()
     {
         IsMovementStarted = true;
+        OnMovementStarted.Invoke();
     }
     
     private void LevelFinishedAction()
     {
         IsMovementStarted = false;
+        OnMovementStopped.Invoke();
     }
 }
