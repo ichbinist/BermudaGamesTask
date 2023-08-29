@@ -23,6 +23,7 @@ public class RunnerSwerveController : MonoBehaviour
     {
         Runner.OnDamageTaken.AddListener(DamageTakenAction);
         localSwerveSpeed = SwerveSpeed;
+
     }
 
     private void OnDisable()

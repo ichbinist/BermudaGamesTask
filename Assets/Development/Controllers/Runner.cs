@@ -10,6 +10,10 @@ public class Runner : MonoBehaviour
     [ReadOnly]
     public bool IsMovementStarted;
 
+    [FoldoutGroup("Runner Settings")]
+    [ReadOnly]
+    public CharacterWealthState CharacterWealthState = CharacterWealthState.Average;
+
     [HideInInspector]
     public UnityEvent OnCharacterBounce = new UnityEvent();
     [HideInInspector]
@@ -18,6 +22,9 @@ public class Runner : MonoBehaviour
     public UnityEvent OnMovementStarted = new UnityEvent();
     [HideInInspector]
     public UnityEvent OnMovementStopped = new UnityEvent();
+    [HideInInspector]
+    public WealthStateEvent OnWealthChanged = new WealthStateEvent();
+
     private void OnEnable()
     {
         LevelManager.Instance.OnLevelStarted.AddListener(LevelStartedAction);
@@ -44,4 +51,33 @@ public class Runner : MonoBehaviour
         IsMovementStarted = false;
         OnMovementStopped.Invoke();
     }
+
+    public bool GetCharacterMoralState()
+    {
+        bool localState = false;
+        switch (CharacterWealthState)
+        {
+            case CharacterWealthState.Poor:
+                localState = false;
+                break;
+            case CharacterWealthState.Average:
+                localState = true;
+                break;
+            case CharacterWealthState.Rich:
+                localState = true;
+                break;
+            default:
+                break;
+        }
+        return localState;
+    }
+}
+
+public class WealthStateEvent : UnityEvent<bool> { }
+
+public enum CharacterWealthState
+{
+    Poor,
+    Average,
+    Rich
 }

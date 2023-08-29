@@ -14,6 +14,9 @@ public class Level
     public LevelType LevelType;
     [ValueDropdown("LevelNames")]
     public string LevelID;
+    public int TargetMaxWealth = 200;
+    public float PoorPercentage = 33.3f, AveragePercentage = 66.6f;
+    
 
 #if UNITY_EDITOR
     public List<string> LevelNames
