@@ -42,7 +42,10 @@ public class CurrencyManager : Singleton<CurrencyManager>
     public void AddTemporaryCurrency(int currency)
     {
         TemporaryCurrency += currency;
-        if(currency > 0)
+
+        TemporaryCurrency = Mathf.Clamp(TemporaryCurrency, 0, TemporaryCurrency);
+
+        if (currency > 0)
         {
             OnTemporaryCurrencyAdded.Invoke();
         }

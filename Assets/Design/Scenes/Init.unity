@@ -371,10 +371,34 @@ MonoBehaviour:
   Levels:
   - LevelType: 0
     LevelID: Level_1
+    TargetMaxWealth: 200
+    PoorPercentage: 33.3
+    AveragePercentage: 66.6
     BackgroundColor: {r: 0.61960787, g: 1, b: 0.78431374, a: 1}
+  - LevelType: 0
+    LevelID: Level_2
+    TargetMaxWealth: 200
+    PoorPercentage: 33.3
+    AveragePercentage: 66.6
+    BackgroundColor: {r: 0.9918667, g: 0.61960787, b: 1, a: 1}
+  - LevelType: 0
+    LevelID: Level_3
+    TargetMaxWealth: 200
+    PoorPercentage: 33.3
+    AveragePercentage: 66.6
+    BackgroundColor: {r: 1, g: 0.88440806, b: 0.61960787, a: 1}
+  - LevelType: 0
+    LevelID: Level_1
+    TargetMaxWealth: 200
+    PoorPercentage: 33.3
+    AveragePercentage: 66.6
+    BackgroundColor: {r: 0.61960787, g: 0.6747937, b: 1, a: 1}
   CurrentLevel:
     LevelType: 0
     LevelID: 
+    TargetMaxWealth: 200
+    PoorPercentage: 33.3
+    AveragePercentage: 66.6
     BackgroundColor: {r: 150, g: 200, b: 255, a: 1}
   IsLevelStarted: 0
 --- !u!1 &1719402602

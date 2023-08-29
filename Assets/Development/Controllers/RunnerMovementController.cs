@@ -30,11 +30,13 @@ public class RunnerMovementController : MonoBehaviour
         Runner.OnDamageTaken.AddListener(DamageTakenAction);
         localMovementSpeed = MovementSpeed;
         PathFollower.pathCreator = PathCreator;
+        Runner.OnMovementStopped.AddListener(StopMovement);
     }
 
     private void OnDisable()
     {
         Runner.OnDamageTaken.RemoveListener(DamageTakenAction);
+        Runner.OnMovementStopped.RemoveListener(StopMovement);
     }
 
     private void DamageTakenAction()
@@ -43,11 +45,16 @@ public class RunnerMovementController : MonoBehaviour
         transform.DOMoveZ(localZ - 3f, 0.5f).OnStart(() => localMovementSpeed = 0).OnComplete(() => localMovementSpeed = MovementSpeed);
     }
 
+    private void StopMovement()
+    {
+        localMovementSpeed = 0;
+        PathFollower.speed = 0;
+    }
+
     private void Update()
     {
         if (Runner.IsMovementStarted)
         {
-            //transform.position += Vector3.forward * Time.fixedDeltaTime * localMovementSpeed;
             PathFollower.speed = localMovementSpeed;
         }
     }

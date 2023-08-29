@@ -23,7 +23,6 @@ public class RunnerSwerveController : MonoBehaviour
     {
         Runner.OnDamageTaken.AddListener(DamageTakenAction);
         localSwerveSpeed = SwerveSpeed;
-
     }
 
     private void OnDisable()
@@ -46,7 +45,7 @@ public class RunnerSwerveController : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(Mathf.Clamp(positionBeforeSwerve.x + InputManager.Instance.GetSwerveAmount(SwerveSpeed).x, -SwerveLimit, SwerveLimit), transform.localPosition.y, 0f), Time.deltaTime * SwerveSpeed * 2.5f);
+                transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(Mathf.Clamp(positionBeforeSwerve.x + InputManager.Instance.GetSwerveAmount(localSwerveSpeed).x, -SwerveLimit, SwerveLimit), transform.localPosition.y, 0f), Time.deltaTime * SwerveSpeed * 2.5f);
             }
 
             RotateCharacter();
@@ -62,7 +61,7 @@ public class RunnerSwerveController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            float distance = positionBeforeSwerve.x + InputManager.Instance.GetSwerveAmount(SwerveSpeed).x;
+            float distance = positionBeforeSwerve.x + InputManager.Instance.GetSwerveAmount(localSwerveSpeed).x;
             float rotationDistance = distance - transform.localPosition.x;
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(0f, Mathf.Clamp(120f * (rotationDistance), -45f, 45f), 0f), Time.deltaTime * 20f);
         }

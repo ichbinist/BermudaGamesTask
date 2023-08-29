@@ -50,6 +50,7 @@ public class Runner : MonoBehaviour
     {
         IsMovementStarted = false;
         OnMovementStopped.Invoke();
+        GameManager.Instance.OnGameComplete.Invoke(GetCharacterMoralState());
     }
 
     public bool GetCharacterMoralState()

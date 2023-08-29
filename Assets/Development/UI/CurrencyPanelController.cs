@@ -27,6 +27,7 @@ public class CurrencyPanelController : MonoBehaviour
     {
         SceneInitializationManager.Instance.OnSceneLoaded.AddListener(() => { OpenPanel(TapToPlayPanel); ClosePanel(InGamePlayPanel); });
         LevelManager.Instance.OnLevelStarted.AddListener(() => { OpenPanel(InGamePlayPanel); ClosePanel(TapToPlayPanel); });
+        LevelManager.Instance.OnLevelFinished.AddListener(() => { ClosePanel(InGamePlayPanel); ClosePanel(TapToPlayPanel); });
         CurrencyManager.Instance.OnTemporaryCurrencyChanged.AddListener(() => { InGameCurrencyText.SetText(CurrencyManager.Instance.TemporaryCurrency.ToString()); });
         CurrencyManager.Instance.OnPersistentCurrencyChanged.AddListener(() => { TapToPlayCurrencyText.SetText(JSONDataManager.Instance.JSONDATA.Currency.ToString()); });
     }
@@ -37,6 +38,7 @@ public class CurrencyPanelController : MonoBehaviour
         {
             SceneInitializationManager.Instance.OnSceneLoaded.RemoveListener(() => { OpenPanel(TapToPlayPanel); ClosePanel(InGamePlayPanel); });
             LevelManager.Instance.OnLevelStarted.RemoveListener(() => { OpenPanel(InGamePlayPanel); ClosePanel(TapToPlayPanel); });
+            LevelManager.Instance.OnLevelFinished.RemoveListener(() => { ClosePanel(InGamePlayPanel); ClosePanel(TapToPlayPanel); });
             CurrencyManager.Instance.OnTemporaryCurrencyChanged.RemoveListener(() => { InGameCurrencyText.SetText(CurrencyManager.Instance.TemporaryCurrency.ToString()); });
             CurrencyManager.Instance.OnPersistentCurrencyChanged.RemoveListener(() => { TapToPlayCurrencyText.SetText(JSONDataManager.Instance.JSONDATA.Currency.ToString()); });
         }

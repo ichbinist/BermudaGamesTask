@@ -52,7 +52,7 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadNextLevel()
     {
         IncreaseFakeLevel();
-
+        FinishLevel();
         PlayerPrefs.SetInt("LastLevel", PlayerPrefs.GetInt("LastLevel") + 1);
         if (PlayerPrefs.GetInt("LastLevel") >= Levels.Count)
         {
@@ -81,7 +81,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void ReloadLevel()
     {
-        FinishLevel(); //Geçici
+        FinishLevel();
         LoadLastLevel();
     }
 }

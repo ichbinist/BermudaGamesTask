@@ -89,5 +89,4 @@ public class JSONDataManager : Singleton<JSONDataManager>
 public class JSONDATA
 {
     public int Currency;
-    public float Highscore;
 }
