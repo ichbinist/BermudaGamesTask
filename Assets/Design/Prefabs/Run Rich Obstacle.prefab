@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a777a8a03e96e948ad39e482c090abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ObstacleDamageAmount: -10
 --- !u!1001 &8852670013917792398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -181,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 5653107438150369491, guid: 0e01a685c569ccf45b0d76098832e1ac,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.266
+      value: -0.244
       objectReference: {fileID: 0}
     - target: {fileID: 5653107438150369491, guid: 0e01a685c569ccf45b0d76098832e1ac,
         type: 3}
