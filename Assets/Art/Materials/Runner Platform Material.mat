@@ -129,9 +129,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BrightColor: {r: 0.9989791, g: 0.8915094, b: 1, a: 0}
+    - _BrightColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DarkerColor: {r: 0.8984748, g: 0.68235296, b: 1, a: 0}
+    - _DarkerColor: {r: 0.7865129, g: 0.33490565, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 1, g: -60, b: 0, a: 0}
